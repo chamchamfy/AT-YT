@@ -163,7 +163,6 @@ mv apk/YouTube2 apk/YouTube.apk
 fi
 fi
 
-
 if [ "$TYPE" == 'true' ];then
 lib='lib/*/*'
 if [ -e apk/YouTube.apks ];then
@@ -201,8 +200,9 @@ fi
 (
 
 echo "▼ Bắt đầu quá trình xây dựng..."
-#java -Djava.io.tmpdir=$HOME -jar $lib1 patch
-eval "java -Djava.io.tmpdir=$HOME -jar $lib1 patch -b $lib2 -m $lib3 apk/YouTube.apk -o YT.apk "$Tof $Ton $Mro $theme $feature" >>Log2.txt 2>&1 "
+#java -Djava.io.tmpdir=$HOME -jar $lib1 patch 2>&1
+
+eval "java -Djava.io.tmpdir=$HOME -jar $lib1 patch -b $lib2 -m $lib3 apk/YouTube.apk -o YT.apk "$Tof $Ton $Mro $theme $feature"" >>Log2.txt 2>&1
 sed '/WARNING: warn: removing resource/d' Log2.txt
 grep 'SEVERE:' Log2.txt | sed 's|failed:|failed|g' > Log.txt
 echo '- Quá trình xây dựng apk xong.' | tee 2.txt
@@ -254,7 +254,7 @@ updateJson=https://github.com/'$GITHUB_REPOSITORY'/releases/download/Up/Up-K'$V$
 echo '{
 "version": "'$VER'",
 "versionCode": "'${VER//./}'",
-"zipUrl": "https://github.com/'$GITHUB_REPOSITORY'/releases/download/K'$V$VER'/YT-Magisk-'$VER'-'$ach$amoled2'.Zip",
+"zipUrl": "https://github.com/'$GITHUB_REPOSITORY'/releases/download/K'$V$VER'/YT-Hybrid-'$VER'-'$ach$amoled2'.Zip",
 "changelog": "https://github.com/'$GITHUB_REPOSITORY'/releases/download/Up/Up-K'$V'notes.json"
 }' > Up-K$V$ach$amoled2.json
 
@@ -262,6 +262,6 @@ echo -e 'Update '$(date)' \nYouTube: '$VER' \nVersion: '${VER//./}' \nAuto by ka
 
 # Tạo module magisk
 cd $HOME/.github/Modun
-zip -qr $HOME/Up/YT-Magisk-$VER-$ach$amoled2.zip *
+zip -qr $HOME/Up/YT-Hybrid-$VER-$ach$amoled2.zip *
 cd $HOME
 ls Up
