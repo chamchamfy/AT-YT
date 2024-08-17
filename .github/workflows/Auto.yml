@@ -2,11 +2,11 @@ name: RE-AUTO
 on:
   workflow_dispatch:
   push:
-    paths:
+   paths:
       - '.github/workflows/Auto.yml'
       - '.github/YT.sh'
   schedule:
-    - cron: '0 23 1/2 * *'
+     - cron: '0 0 * * 6'
 permissions: write-all
 env:
     GH_TOKEN: ${{ github.token }}
