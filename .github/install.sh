@@ -19,8 +19,9 @@ feature="$FEATURE"
 Xem () { curl -s -L -G -N -H "$User" --connect-timeout 20 "$1"; }
 Taivec () { curl -s -L -H "$User" --connect-timeout 20 "$1" -o "$2"; }
 Taiveck () { curl -S -k --connect-timeout 20 "$1" -o "$2"; }
+Taive () { curl -s -L -k -H "$User" --dns-servers "1.1.1.1,1.0.0.1" --connect-timeout 20 "$1" -o "$2"; }
 Taivew() { wget "$1" -O "$2"; }
-Taive() { wget --no-check-certificate "$1" -O "$2"; }
+Taivewk() { wget --no-check-certificate "$1" -O "$2"; }
 XHex(){ xxd -p "$@" | tr -d "\n" | tr -d ' '; }
 ZHex(){ xxd -r -p "$@"; }
 apksign () { java -jar $HOME/.github/Tools/apksigner.jar sign --cert "$HOME/.github/Tools/testkey.x509.pem" --key "$HOME/.github/Tools/testkey.pk8" --out "$2" "$1"; }
