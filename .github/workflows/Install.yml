@@ -25,9 +25,9 @@ on:
           - Stable
           - Develop
       FEATURE:
-        description: 'Turn on/off feature on: [-i "feature"], off: [-e "feature"]'
+        description: 'Turn on/off feature on: [-e "feature"], off: [-d "feature"]'
         required: false
-        default: '-e "Hide captions button" -e "Hide autoplay button" -d "Playback speed"'
+        default: '-d "Hide captions button" -d "Hide autoplay button" -d "Playback speed"'
 permissions: write-all
 jobs:
   build1:
