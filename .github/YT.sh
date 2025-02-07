@@ -34,9 +34,8 @@ uak1="$urrl$(Xem "$urrl/apk/$2" | grep -m1 'downloadButton' | tr ' ' '\n' | grep
 uak2="$urrl$(Xem "$uak1" | grep -m1 '>here<' | tr ' ' '\n' | grep -m1 'href=' | cut -d \" -f2 | sed 's|amp;||')"
 Taive "$uak2" "apk/$1"
 echo "Link: $uak2"
-# file check
 file "apk/$1" | tee "apk/$1.txt";
-#[ "$(file apk/$1 | grep -cm1 'Zip')" == 1 ] && echo > "apk/$1.txt" || echo "! Lỗi $1" | tee "apk/$1.txt"; 
+#[ -n "$(hexdump -n 2 apk/$1 | grep '4b50')" ] && echo > "apk/$1.txt" || ( echo "! Lỗi $1" | tee "apk/$1.txt"; );
 }
 
 # Load dữ liệu cài đặt 
@@ -125,8 +124,10 @@ TaiYT 'YouTube1' "$kkk1" & TaiYT 'YouTube2' "$kkk2"
 Loading apk/YouTube1.txt apk/YouTube2.txt
 
 # Xem xét apk
-[ "$(file apk/YouTube1 | grep -cm1 HTML)" == 1 ] && rm -fr apk/YouTube1
-[ "$(file apk/YouTube2 | grep -cm1 HTML)" == 1 ] && rm -fr apk/YouTube2
+#[ "$(file apk/YouTube1 | grep -cm1 HTML)" == 1 ] && rm -fr apk/YouTube1
+#[ "$(file apk/YouTube2 | grep -cm1 HTML)" == 1 ] && rm -fr apk/YouTube2
+[ -z "$(hexdump -n 2 apk/YouTube1 | grep '4b50')" ] && rm -rf apk/YouTube1
+[ -z "$(hexdump -n 2 apk/YouTube2 | grep '4b50')" ] && rm -rf apk/YouTube2
 
 if [ -e apk/YouTube1 ];then
 if [ "$(unzip -l apk/YouTube1 | grep -cm1 'base.apk')" == 1 ];then
@@ -150,7 +151,7 @@ fi
 
 if [ "$TYPE" == 'true' ];then
 lib='lib/*/*'
-if [ -e apk/YouTube.apks/kkkkkk ];then
+if [ -e apk/YouTube.apks ];then
 echo "- Giải nén base.apk"
 unzip -qo apk/YouTube.apks 'base.apk' -d Tav
 unzip -qo apk/YouTube.apk lib/$DEVICE/* -d Tav
