@@ -64,6 +64,7 @@ fi
 echo "  $Vidon"
 if [ "$VERSION" == 'Auto' ];then
 VER="$Vidon"
+[ -z "$Vidon" ] && VER=$(Xem "https://www.apkmirror.com/apk/google-inc/youtube" | grep 'new in YouTube' | tr -d '[:alpha:]"><=/-' | awk -F"'" '{print $2}' | awk '{$1=$1}{print $1}') && Vidon="$VER"
 Kad=Build$Vop
 V=V$Vop2
 elif [ "$VERSION" == 'Autu' ];then
