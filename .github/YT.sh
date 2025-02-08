@@ -77,7 +77,7 @@ Kad=Edit$Vop
 V=N$Vop2
 fi
 
-[ -z "$VER" ] && VER=$(Xem "https://www.apkmirror.com/apk/google-inc/youtube" | grep 'new in YouTube' | tr -d '[:alpha:]"><=/-' | awk -F"'" '{print $2}')
+[ -z "$VER" ] && VER=$(echo "$(Xem "https://www.apkmirror.com/apk/google-inc/youtube" | grep 'new in YouTube' | tr -d '[:alpha:]"><=/-' | awk -F"'" '{print $2}')")
 
 Upenv V "$V"
 Upenv Kad "$Kad"
